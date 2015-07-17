@@ -5,7 +5,7 @@ namespace Cocur\Arff;
 use Cocur\Arff\Column\ColumnInterface;
 
 /**
- * ArffFile
+ * ArffWriter
  *
  * @package   Cocur\Arff
  * @author    Florian Eckerstorfer
@@ -95,6 +95,25 @@ class ArffFile
     }
 
     /**
+     * @param array $row
+     *
+     * @return string
+     */
+    public function renderRow($row)
+    {
+        $processedRow = [];
+        foreach ($this->columns as $name => $column) {
+            $value = $row[$name];
+            if (preg_match('/\s|,|;/', $value)) {
+                $value = sprintf('"%s"', $value);
+            }
+            $processedRow[] = $value;
+        }
+
+        return sprintf("%s\n", implode(',', $processedRow));
+    }
+
+    /**
      * @return string
      */
     public function render()
@@ -105,15 +124,7 @@ class ArffFile
         }
         $content .= "\n@DATA\n";
         foreach ($this->data as $row) {
-            $processedRow = [];
-            foreach ($this->columns as $name => $column) {
-                $value = $row[$name];
-                if (preg_match('/\s|,|;/', $value)) {
-                    $value = sprintf('"%s"', $value);
-                }
-                $processedRow[] = $value;
-            }
-            $content .= sprintf("%s\n", implode(',', $processedRow));
+            $content .= $this->renderRow($row);
         }
 
         return $content;

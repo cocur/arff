@@ -70,6 +70,7 @@ class ArffFileTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @covers Cocur\Arff\ArffFile::renderRow()
      * @covers Cocur\Arff\ArffFile::render()
      */
     public function renderRendersArffFileAndWritesThemDoDisk()

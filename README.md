@@ -3,6 +3,10 @@ cocur/arff
 
 > Read and write `.arff` files for Weka.
 
+[![Build Status](https://travis-ci.org/cocur/arff.svg?branch=master)](https://travis-ci.org/cocur/arff)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cocur/arff/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/cocur/arff/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/cocur/arff/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/cocur/arff/?branch=master)
+
 Developed by [Florian Eckerstorfer](https://florian.ec) in Vienna, Europe.
 
 Installation
@@ -21,6 +25,8 @@ Usage
 
 ```php
 use Cocur\Arff\ArffFile;
+use Cocur\Arff\Column\NumericColumn;
+use Cocur\Arff\Column\NominalColumn;
 
 $file = new ArffFile('iris');
 $file->addColumn(new NumericColumn('sepallength'));
@@ -37,10 +43,10 @@ $file->write('iris.arff'); // writes .arff file to disk
 
 #### Available types of columns
 
-- `NumericColumn`
-- `StringColumn`
-- `NominalColumn`
-- `DateColumn`
+- `Cocur\Arff\Column\NumericColumn`
+- `Cocur\Arff\Column\StringColumn`
+- `Cocur\Arff\Column\NominalColumn`
+- `Cocur\Arff\Column\DateColumn`
 
 #### Date columns
 
@@ -49,6 +55,22 @@ convert the date manually before adding the data.
 
 ```php
 $column = new DateColumn('created', 'yyyy-MM-dd HH:mm:ss');
+```
+
+### Plum Integration
+
+cocur/arff contains a write for [Plum](https://github.com/plumphp/plum).
+
+```php
+use Cocur\Arff\Bridge\Plum\ArffWriter;
+
+$writer = new ArffWriter('filename.arff', 'name', [
+    new NumericColumn('sepallength'),
+    new NumericColumn('sepalwidth'),
+    new NumericColumn('petallength'),
+    new NumericColumn('petalwidth'),
+    new NominalColumn('class', ['Iris-setosa','Iris-versicolor','Iris-virginica']),
+]);
 ```
 
 
