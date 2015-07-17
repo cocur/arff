@@ -73,6 +73,13 @@ $writer = new ArffWriter('filename.arff', 'name', [
 ]);
 ```
 
+Changelog
+---------
+
+### Version 0.1 (17 July 2015)
+
+- Initial release
+
 
 License
 --------
