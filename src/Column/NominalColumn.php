@@ -23,7 +23,7 @@ class NominalColumn extends AbstractColumn
      */
     public function __construct($name = null, array $classes = [])
     {
-        if ($name) {
+        if ($name !== null) {
             $this->setName($name);
         }
         $this->setClasses($classes);

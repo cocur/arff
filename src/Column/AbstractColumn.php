@@ -19,7 +19,7 @@ abstract class AbstractColumn implements ColumnInterface
     /**
      * @param string $name
      *
-     * @return ColumnInterface
+     * @return AbstractColumn
      */
     public function setName($name)
     {

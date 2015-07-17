@@ -42,7 +42,7 @@ class DateColumn extends AbstractColumn
      */
     public function __construct($name = null, $dateFormat = null)
     {
-        if ($name) {
+        if ($name !== null) {
             $this->setName($name);
         }
         $this->dateFormat = $dateFormat;
@@ -62,7 +62,7 @@ class DateColumn extends AbstractColumn
     public function render()
     {
         $dateFormat = $this->getDateFormat();
-        if ($dateFormat) {
+        if ($dateFormat !== null) {
             $dateFormat = sprintf(' "%s"', $dateFormat);
         }
 

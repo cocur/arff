@@ -17,7 +17,7 @@ class StringColumn extends AbstractColumn
      */
     public function __construct($name = null)
     {
-        if ($name) {
+        if ($name !== null) {
             $this->setName($name);
         }
     }
