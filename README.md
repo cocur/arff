@@ -59,7 +59,7 @@ $column = new DateColumn('created', 'yyyy-MM-dd HH:mm:ss');
 
 ### Plum Integration
 
-cocur/arff contains a write for [Plum](https://github.com/plumphp/plum).
+cocur/arff contains a writer for [Plum](https://github.com/plumphp/plum).
 
 ```php
 use Cocur\Arff\Bridge\Plum\ArffWriter;
