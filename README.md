@@ -35,7 +35,7 @@ $file->addColumn(new NumericColumn('petallength'));
 $file->addColumn(new NumericColumn('petalwidth'));
 $file->addColumn(new NominalColumn('class', ['Iris-setosa','Iris-versicolor','Iris-virginica']));
 
-$file->addData(['sepallength' => 5.1, 'sepalwidth' => 3.5, 'petallength' => 1.4, 'petalwidth' => 0.2, 'class' => Iris-setosa']);
+$file->addData(['sepallength' => 5.1, 'sepalwidth' => 3.5, 'petallength' => 1.4, 'petalwidth' => 0.2, 'class' => 'Iris-setosa']);
 
 $file->render();           // returns rendered .arff file
 $file->write('iris.arff'); // writes .arff file to disk
