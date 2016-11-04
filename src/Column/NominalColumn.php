@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Cocur\Arff\Column;
 
 /**
- * NominalColumn
+ * NominalColumn.
  *
- * @package   Cocur\Arff\Column
  * @author    Florian Eckerstorfer
  * @copyright 2015 Florian Eckerstorfer
  */
@@ -62,6 +60,26 @@ class NominalColumn extends AbstractColumn
      */
     public function render()
     {
-        return sprintf('@ATTRIBUTE %s {%s}', $this->getName(), implode(',', $this->getClasses()));
+        return sprintf('@ATTRIBUTE %s {%s}', $this->getName(), $this->renderClasses());
+    }
+    
+    /**
+     * @return string
+     */
+    private function renderClasses()
+    {
+        $classes = $this->getClasses();
+        $strClass = '';
+
+        for ($i = 0; $i < count($classes); ++$i) {
+            $class = $classes[$i];
+
+            if (preg_match('/\s|,|;/', $class)) {
+                $class = sprintf("'%s'", $class);
+            }
+            $classes[$i] = $class;
+        }
+
+        return implode(',', $classes);
     }
 }

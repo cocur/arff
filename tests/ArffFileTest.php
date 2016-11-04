@@ -7,9 +7,8 @@ use org\bovigo\vfs\vfsStream;
 use PHPUnit_Framework_TestCase;
 
 /**
- * ArffFileTest
+ * ArffFileTest.
  *
- * @package   Cocur\Arff
  * @author    Florian Eckerstorfer
  * @copyright 2015 Florian Eckerstorfer
  * @group     unit
@@ -85,11 +84,11 @@ class ArffFileTest extends PHPUnit_Framework_TestCase
 @ATTRIBUTE d date "yyyy-MM-dd HH:mm:ss"
 
 @DATA
-hello,1.5,x,"2015-07-17 16:12:30"
-"hello world",1.5,"x y",?
+hello,1.5,x,'2015-07-17 16:12:30'
+'hello world',1.5,'x y',?
 hello,?,z,?
-"hello,world",?,?,?
-"hello;world",?,?,?
+'hello,world',?,?,?
+'hello;world',?,?,?
 
 EOF;
 
@@ -134,19 +133,19 @@ EOF;
         $file = new ArffFile('foobar');
         $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'a',
-            'render'  => '@ATTRIBUTE a string',
+            'render' => '@ATTRIBUTE a string',
         ]));
         $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'b',
-            'render'  => '@ATTRIBUTE b numeric',
+            'render' => '@ATTRIBUTE b numeric',
         ]));
         $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'c',
-            'render'  => '@ATTRIBUTE c {x,y,z}',
+            'render' => '@ATTRIBUTE c {x,y,z}',
         ]));
         $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'd',
-            'render'  => '@ATTRIBUTE d date "yyyy-MM-dd HH:mm:ss"',
+            'render' => '@ATTRIBUTE d date "yyyy-MM-dd HH:mm:ss"',
         ]));
         $file->addData(['a' => 'hello', 'b' => 1.5, 'c' => 'x', 'd' => '2015-07-17 16:12:30']);
         $file->addData(['a' => 'hello world', 'b' => 1.5, 'c' => 'x y']);

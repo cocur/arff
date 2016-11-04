@@ -5,9 +5,8 @@ namespace Cocur\Arff;
 use Cocur\Arff\Column\ColumnInterface;
 
 /**
- * ArffWriter
+ * ArffWriter.
  *
- * @package   Cocur\Arff
  * @author    Florian Eckerstorfer
  * @copyright 2015 Florian Eckerstorfer
  */
@@ -105,7 +104,7 @@ class ArffFile
         foreach ($this->columns as $name => $column) {
             $value = $row[$name];
             if (preg_match('/\s|,|;/', $value)) {
-                $value = sprintf('"%s"', $value);
+                $value = sprintf("'%s'", $value);
             }
             $processedRow[] = $value;
         }
