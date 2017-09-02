@@ -46,16 +46,22 @@ class Reader
     protected function parseColumns(Document $document, array $lines)
     {
         foreach ($lines as $line) {
-            if (preg_match('/ATTRIBUTE\s([a-zA-Z0-9_-]+)\s([{},a-zA-Z]+)/i', $line, $matches)) {
+            if (preg_match('/ATTRIBUTE\s([a-zA-Z0-9_-]+)\s(.*)/i', $line, $matches)) {
                 $type   = $matches[2];
                 $column = null;
                 if ($type === 'string') {
                     $column = new StringColumn($matches[1]);
                 } else if ($type === 'numeric') {
                     $column = new NumericColumn($matches[1]);
-                } else if (preg_match('/^\{([a-zA-Z0-9,]+)\}$/', $matches[2], $classMatches)) {
-                    $column = new NominalColumn($matches[1], explode(',', $classMatches[1]));
-                } else if ($type === 'date') {
+                } else if (preg_match('/^\{(.*)\}$/', $matches[2], $classMatches)) {
+                    $column = new NominalColumn($matches[1], array_map(function ($value) {
+                        return trim($value, "'");
+                    }, preg_split(
+                            "/,(?=(?:[^\']*\'[^\']*\')*(?![^\']*\'))/",
+                            $classMatches[1]
+                        )
+                    ));
+                } else if (preg_match('/date\s\"/', $matches[2])) {
                     preg_match('/date\s"([A-Za-z0-9-: ]+)"/', $line, $dateMatches);
                     $column = new DateColumn($matches[1], $dateMatches[1]);
                 }
@@ -76,10 +82,10 @@ class Reader
         while (!preg_match('/@DATA/i', $lines[$index])) {
             $index++;
         }
-        $columns = $document->getColumns();
+        $columns     = $document->getColumns();
         $columnNames = array_keys($columns);
-        for ($i = $index + 1; $i < count($lines); $i += 1) {
-            $row = [];
+        for ($i = $index+1; $i < count($lines); $i += 1) {
+            $row    = [];
             $splits = preg_split(
                 "/,(?=(?:[^\']*\'[^\']*\')*(?![^\']*\'))/",
                 $lines[$i],

@@ -23,7 +23,7 @@ class ReaderTest extends TestCase
 
 @ATTRIBUTE a string
 @ATTRIBUTE b numeric
-@ATTRIBUTE c {x,y,z}
+@ATTRIBUTE c {x,y,'Top 100 Editors Picks: Print Books: Books'}
 @ATTRIBUTE d date "yyyy-MM-dd HH:mm:ss"
 
 @DATA
@@ -54,7 +54,7 @@ EOF;
         $this->assertEquals('nominal', $columnC->getType());
         $this->assertEquals('x', $columnC->getClasses()[0]);
         $this->assertEquals('y', $columnC->getClasses()[1]);
-        $this->assertEquals('z', $columnC->getClasses()[2]);
+        $this->assertEquals('Top 100 Editors Picks: Print Books: Books', $columnC->getClasses()[2]);
 
         /** @var DateColumn $columnD */
         $columnD = $columns['d'];
