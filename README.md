@@ -87,6 +87,10 @@ $writer = new ArffWriter('filename.arff', 'name', [
 Changelog
 ---------
 
+### Version 0.2.1 (2 September 2017)
+
+- Fix parsing of nominal columns
+
 ### Version 0.2 (2 September 2017)
 
 - Split `ArffFile` into `Cocur\Arff\Document` and `Cocur\Arff\Writer`
