@@ -24,21 +24,32 @@ Usage
 ### Write `.arff` file
 
 ```php
-use Cocur\Arff\ArffFile;
+use Cocur\Arff\Document;
 use Cocur\Arff\Column\NumericColumn;
 use Cocur\Arff\Column\NominalColumn;
 
-$file = new ArffFile('iris');
-$file->addColumn(new NumericColumn('sepallength'));
-$file->addColumn(new NumericColumn('sepalwidth'));
-$file->addColumn(new NumericColumn('petallength'));
-$file->addColumn(new NumericColumn('petalwidth'));
-$file->addColumn(new NominalColumn('class', ['Iris-setosa','Iris-versicolor','Iris-virginica']));
+$document = new Document('iris');
+$document->addColumn(new NumericColumn('sepallength'));
+$document->addColumn(new NumericColumn('sepalwidth'));
+$document->addColumn(new NumericColumn('petallength'));
+$document->addColumn(new NumericColumn('petalwidth'));
+$document->addColumn(new NominalColumn('class', ['Iris-setosa','Iris-versicolor','Iris-virginica']));
 
-$file->addData(['sepallength' => 5.1, 'sepalwidth' => 3.5, 'petallength' => 1.4, 'petalwidth' => 0.2, 'class' => 'Iris-setosa']);
+$document->addData(['sepallength' => 5.1, 'sepalwidth' => 3.5, 'petallength' => 1.4, 'petalwidth' => 0.2, 'class' => 'Iris-setosa']);
 
-$file->render();           // returns rendered .arff file
-$file->write('iris.arff'); // writes .arff file to disk
+$writer = new Writer();
+
+$writer->render($document);           // returns rendered .arff file
+$writer->write($document, 'iris.arff'); // writes .arff file to disk
+```
+
+### Read `.arff` file
+
+```php
+use Cocur\Arff\Reader;
+
+$reader = new Reader();
+$document = $reader->readFile('irif.arff'); // returns Cocur\Arff\Document
 ```
 
 #### Available types of columns
@@ -75,6 +86,11 @@ $writer = new ArffWriter('filename.arff', 'name', [
 
 Changelog
 ---------
+
+### Version 0.2 (2 September 2017)
+
+- Split `ArffFile` into `Cocur\Arff\Document` and `Cocur\Arff\Writer`
+- Add `Cocur\Arff\Reader` to read `.arff` files
 
 ### Version 0.1 (17 July 2015)
 
