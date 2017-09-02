@@ -17,8 +17,8 @@ class ArffFileTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @test
-     * @covers Cocur\Arff\ArffFile::__construct()
-     * @covers Cocur\Arff\ArffFile::getName()
+     * @covers \Cocur\Arff\ArffFile::__construct()
+     * @covers \Cocur\Arff\ArffFile::getName()
      */
     public function constructorSetsNameAndGetNameReturnsName()
     {
@@ -29,8 +29,8 @@ class ArffFileTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\ArffFile::addColumn()
-     * @covers Cocur\Arff\ArffFile::getColumns()
+     * @covers \Cocur\Arff\ArffFile::addColumn()
+     * @covers \Cocur\Arff\ArffFile::getColumns()
      */
     public function addColumnAddsColumnAndGetColumnsReturnsColumns()
     {
@@ -43,8 +43,8 @@ class ArffFileTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\ArffFile::addData()
-     * @covers Cocur\Arff\ArffFile::getData()
+     * @covers \Cocur\Arff\ArffFile::addData()
+     * @covers \Cocur\Arff\ArffFile::getData()
      */
     public function addDataAddsDataAndGetDataReturnsData()
     {
@@ -56,8 +56,8 @@ class ArffFileTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\ArffFile::addData()
-     * @covers Cocur\Arff\ArffFile::getData()
+     * @covers \Cocur\Arff\ArffFile::addData()
+     * @covers \Cocur\Arff\ArffFile::getData()
      */
     public function addDataAddsDataAndAddsMissingFields()
     {
@@ -69,8 +69,8 @@ class ArffFileTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\ArffFile::renderRow()
-     * @covers Cocur\Arff\ArffFile::render()
+     * @covers \Cocur\Arff\ArffFile::renderRow()
+     * @covers \Cocur\Arff\ArffFile::render()
      */
     public function renderRendersArffFileAndWritesThemDoDisk()
     {
@@ -97,7 +97,7 @@ EOF;
 
     /**
      * @test
-     * @covers Cocur\Arff\ArffFile::write()
+     * @covers \Cocur\Arff\ArffFile::write()
      */
     public function writeWritesArffFileToDisk()
     {
@@ -118,7 +118,9 @@ EOF;
      */
     protected function mockArffFileWithTwoColumns($name, $columnName1, $columnName2)
     {
+        /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column1 */
         $column1 = Mockery::mock('Cocur\Arff\Column\ColumnInterface', ['getName' => $columnName1]);
+        /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column2 */
         $column2 = Mockery::mock('Cocur\Arff\Column\ColumnInterface', ['getName' => $columnName2]);
 
         $file = new ArffFile($name);
@@ -131,22 +133,30 @@ EOF;
     protected function mockArffFile()
     {
         $file = new ArffFile('foobar');
-        $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
+        /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column1 */
+        $column1 = Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'a',
-            'render' => '@ATTRIBUTE a string',
-        ]));
-        $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
+            'render'  => '@ATTRIBUTE a string',
+        ]);
+        $file->addColumn($column1);
+        /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column2 */
+        $column2 = Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'b',
-            'render' => '@ATTRIBUTE b numeric',
-        ]));
-        $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
+            'render'  => '@ATTRIBUTE b numeric',
+        ]);
+        $file->addColumn($column2);
+        /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column3 */
+        $column3 = Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'c',
-            'render' => '@ATTRIBUTE c {x,y,z}',
-        ]));
-        $file->addColumn(Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
+            'render'  => '@ATTRIBUTE c {x,y,z}',
+        ]);
+        $file->addColumn($column3);
+        /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column4 */
+        $column4 = Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
             'getName' => 'd',
-            'render' => '@ATTRIBUTE d date "yyyy-MM-dd HH:mm:ss"',
-        ]));
+            'render'  => '@ATTRIBUTE d date "yyyy-MM-dd HH:mm:ss"',
+        ]);
+        $file->addColumn($column4);
         $file->addData(['a' => 'hello', 'b' => 1.5, 'c' => 'x', 'd' => '2015-07-17 16:12:30']);
         $file->addData(['a' => 'hello world', 'b' => 1.5, 'c' => 'x y']);
         $file->addData(['a' => 'hello', 'c' => 'z']);

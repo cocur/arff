@@ -8,7 +8,7 @@ use Cocur\Arff\Column\ColumnInterface;
  * ArffWriter.
  *
  * @author    Florian Eckerstorfer
- * @copyright 2015 Florian Eckerstorfer
+ * @copyright 2015-2017 Florian Eckerstorfer
  */
 class ArffFile
 {
