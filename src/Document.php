@@ -10,7 +10,7 @@ use Cocur\Arff\Column\ColumnInterface;
  * @author    Florian Eckerstorfer
  * @copyright 2015-2017 Florian Eckerstorfer
  */
-class ArffDocument
+class Document
 {
     /**
      * @var string[]
@@ -51,7 +51,7 @@ class ArffDocument
     /**
      * @param ColumnInterface $column
      *
-     * @return ArffDocument
+     * @return Document
      */
     public function addColumn(ColumnInterface $column)
     {
@@ -71,7 +71,7 @@ class ArffDocument
     /**
      * @param array $row
      *
-     * @return ArffDocument
+     * @return Document
      */
     public function addData(array $row)
     {

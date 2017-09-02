@@ -8,15 +8,15 @@ namespace Cocur\Arff;
  * @author    Florian Eckerstorfer
  * @copyright 2015-2017 Florian Eckerstorfer
  */
-class ArffWriter
+class Writer
 {
     /**
-     * @param ArffDocument $document
-     * @param array        $row
+     * @param Document $document
+     * @param array    $row
      *
      * @return string
      */
-    public function renderRow(ArffDocument $document, $row)
+    public function renderRow(Document $document, $row)
     {
         $processedRow = [];
         foreach ($document->getColumns() as $name => $column) {
@@ -31,11 +31,11 @@ class ArffWriter
     }
 
     /**
-     * @param ArffDocument $document
+     * @param Document $document
      *
      * @return string
      */
-    public function render(ArffDocument $document)
+    public function render(Document $document)
     {
         $content = sprintf("@RELATION %s\n\n", $document->getName());
         foreach ($document->getColumns() as $name => $column) {
@@ -50,12 +50,12 @@ class ArffWriter
     }
 
     /**
-     * @param ArffDocument $document
-     * @param string       $filename
+     * @param Document $document
+     * @param string   $filename
      *
-     * @return ArffWriter
+     * @return Writer
      */
-    public function write(ArffDocument $document, $filename)
+    public function write(Document $document, $filename)
     {
         file_put_contents($filename, $this->render($document));
 

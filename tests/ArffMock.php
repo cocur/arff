@@ -1,6 +1,6 @@
 <?php
 
-use Cocur\Arff\ArffDocument;
+use Cocur\Arff\Document;
 
 function mockArffDocumentWithTwoColumns($name, $columnName1, $columnName2)
 {
@@ -9,7 +9,7 @@ function mockArffDocumentWithTwoColumns($name, $columnName1, $columnName2)
     /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column2 */
     $column2 = \Mockery::mock('Cocur\Arff\Column\ColumnInterface', ['getName' => $columnName2]);
 
-    $document = new ArffDocument($name);
+    $document = new Document($name);
     $document->addColumn($column1);
     $document->addColumn($column2);
 
@@ -18,7 +18,7 @@ function mockArffDocumentWithTwoColumns($name, $columnName1, $columnName2)
 
 function mockArffDocument()
 {
-    $document = new ArffDocument('foobar');
+    $document = new Document('foobar');
     /** @var \Cocur\Arff\Column\ColumnInterface|\Mockery\MockInterface $column1 */
     $column1 = \Mockery::mock('Cocur\Arff\Column\ColumnInterface', [
         'getName' => 'a',

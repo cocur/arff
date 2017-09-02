@@ -15,12 +15,12 @@ require_once 'ArffMock.php';
  * @copyright 2015-2017 Florian Eckerstorfer
  * @group     unit
  */
-class ArffWriterTest extends TestCase
+class WriterTest extends TestCase
 {
     /**
      * @test
-     * @covers \Cocur\Arff\ArffWriter::renderRow()
-     * @covers \Cocur\Arff\ArffWriter::render()
+     * @covers \Cocur\Arff\Writer::renderRow()
+     * @covers \Cocur\Arff\Writer::render()
      */
     public function renderRendersArffFileAndWritesThemDoDisk()
     {
@@ -42,21 +42,21 @@ hello,?,z,?
 
 EOF;
 
-        $writer = new ArffWriter();
+        $writer = new Writer();
 
         $this->assertEquals($expected, $writer->render($document));
     }
 
     /**
      * @test
-     * @covers \Cocur\Arff\ArffWriter::write()
+     * @covers \Cocur\Arff\Writer::write()
      */
     public function writeWritesArffFileToDisk()
     {
         $root = vfsStream::setup('fixtures');
 
         $document = mockArffDocument();
-        $writer = new ArffWriter();
+        $writer = new Writer();
         $writer->write($document, $root->url().'/data.arff');
 
         $this->assertTrue($root->hasChild('data.arff'));

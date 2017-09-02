@@ -13,24 +13,24 @@ require_once 'ArffMock.php';
  * @copyright 2015 Florian Eckerstorfer
  * @group     unit
  */
-class ArffDocumentTest extends TestCase
+class DocumentTest extends TestCase
 {
     /**
      * @test
-     * @covers \Cocur\Arff\ArffDocument::__construct()
-     * @covers \Cocur\Arff\ArffDocument::getName()
+     * @covers \Cocur\Arff\Document::__construct()
+     * @covers \Cocur\Arff\Document::getName()
      */
     public function constructorSetsNameAndGetNameReturnsName()
     {
-        $file = new ArffDocument('foo');
+        $file = new Document('foo');
 
         $this->assertEquals('foo', $file->getName());
     }
 
     /**
      * @test
-     * @covers \Cocur\Arff\ArffDocument::addColumn()
-     * @covers \Cocur\Arff\ArffDocument::getColumns()
+     * @covers \Cocur\Arff\Document::addColumn()
+     * @covers \Cocur\Arff\Document::getColumns()
      */
     public function addColumnAddsColumnAndGetColumnsReturnsColumns()
     {
@@ -43,8 +43,8 @@ class ArffDocumentTest extends TestCase
 
     /**
      * @test
-     * @covers \Cocur\Arff\ArffDocument::addData()
-     * @covers \Cocur\Arff\ArffDocument::getData()
+     * @covers \Cocur\Arff\Document::addData()
+     * @covers \Cocur\Arff\Document::getData()
      */
     public function addDataAddsDataAndGetDataReturnsData()
     {
@@ -56,8 +56,8 @@ class ArffDocumentTest extends TestCase
 
     /**
      * @test
-     * @covers \Cocur\Arff\ArffDocument::addData()
-     * @covers \Cocur\Arff\ArffDocument::getData()
+     * @covers \Cocur\Arff\Document::addData()
+     * @covers \Cocur\Arff\Document::getData()
      */
     public function addDataAddsDataAndAddsMissingFields()
     {

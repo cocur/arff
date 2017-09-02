@@ -2,10 +2,10 @@
 
 namespace Cocur\Arff\Bridge\Plum;
 
-use Cocur\Arff\ArffDocument;
+use Cocur\Arff\Document;
 use Cocur\Arff\Column\ColumnInterface;
 use Plum\Plum\Writer\WriterInterface;
-use Cocur\Arff\ArffWriter as Writer;
+use Cocur\Arff\Writer as Writer;
 
 /**
  * ArffWriter
@@ -22,7 +22,7 @@ class ArffWriter implements WriterInterface
     protected $filename;
 
     /**
-     * @var ArffDocument
+     * @var Document
      */
     protected $document;
 
@@ -41,7 +41,7 @@ class ArffWriter implements WriterInterface
     public function __construct($filename, $name, array $columns)
     {
         $this->filename = $filename;
-        $this->document = new ArffDocument($name);
+        $this->document = new Document($name);
         foreach ($columns as $column) {
             $this->document->addColumn($column);
         }
