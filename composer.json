@@ -12,7 +12,7 @@
         "phpunit/phpunit": "~4.7",
         "mockery/mockery": "~0.9",
         "mikey179/vfsStream": "~1.5",
-        "plumphp/plum": "~0.3"
+        "plumphp/plum": "~0.5"
     },
     "autoload": {
         "psr-4": {"Cocur\\Arff\\": "src"}
