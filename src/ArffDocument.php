@@ -5,12 +5,12 @@ namespace Cocur\Arff;
 use Cocur\Arff\Column\ColumnInterface;
 
 /**
- * ArffWriter.
+ * ArffDocument.
  *
  * @author    Florian Eckerstorfer
  * @copyright 2015-2017 Florian Eckerstorfer
  */
-class ArffFile
+class ArffDocument
 {
     /**
      * @var string[]
@@ -51,7 +51,7 @@ class ArffFile
     /**
      * @param ColumnInterface $column
      *
-     * @return ArffFile
+     * @return ArffDocument
      */
     public function addColumn(ColumnInterface $column)
     {
@@ -71,7 +71,7 @@ class ArffFile
     /**
      * @param array $row
      *
-     * @return ArffFile
+     * @return ArffDocument
      */
     public function addData(array $row)
     {
@@ -91,53 +91,5 @@ class ArffFile
     public function getData()
     {
         return $this->data;
-    }
-
-    /**
-     * @param array $row
-     *
-     * @return string
-     */
-    public function renderRow($row)
-    {
-        $processedRow = [];
-        foreach ($this->columns as $name => $column) {
-            $value = $row[$name];
-            if (preg_match('/\s|,|;/', $value)) {
-                $value = sprintf("'%s'", $value);
-            }
-            $processedRow[] = $value;
-        }
-
-        return sprintf("%s\n", implode(',', $processedRow));
-    }
-
-    /**
-     * @return string
-     */
-    public function render()
-    {
-        $content = sprintf("@RELATION %s\n\n", $this->name);
-        foreach ($this->columns as $name => $column) {
-            $content .= $column->render()."\n";
-        }
-        $content .= "\n@DATA\n";
-        foreach ($this->data as $row) {
-            $content .= $this->renderRow($row);
-        }
-
-        return $content;
-    }
-
-    /**
-     * @param string $filename
-     *
-     * @return ArffFile
-     */
-    public function write($filename)
-    {
-        file_put_contents($filename, $this->render());
-
-        return $this;
     }
 }

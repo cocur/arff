@@ -2,9 +2,10 @@
 
 namespace Cocur\Arff\Bridge\Plum;
 
-use Cocur\Arff\ArffFile;
+use Cocur\Arff\ArffDocument;
 use Cocur\Arff\Column\ColumnInterface;
 use Plum\Plum\Writer\WriterInterface;
+use Cocur\Arff\ArffWriter as Writer;
 
 /**
  * ArffWriter
@@ -21,9 +22,14 @@ class ArffWriter implements WriterInterface
     protected $filename;
 
     /**
-     * @var ArffFile
+     * @var ArffDocument
      */
-    protected $arffFile;
+    protected $document;
+
+    /**
+     * @var ArffWriter
+     */
+    protected $writer;
 
     /**
      * @param string            $filename
@@ -35,10 +41,11 @@ class ArffWriter implements WriterInterface
     public function __construct($filename, $name, array $columns)
     {
         $this->filename = $filename;
-        $this->arffFile = new ArffFile($name);
+        $this->document = new ArffDocument($name);
         foreach ($columns as $column) {
-            $this->arffFile->addColumn($column);
+            $this->document->addColumn($column);
         }
+        $this->writer = new Writer();
     }
 
     /**
@@ -50,7 +57,7 @@ class ArffWriter implements WriterInterface
      */
     public function writeItem($item)
     {
-        file_put_contents($this->filename, $this->arffFile->renderRow($item), FILE_APPEND);
+        file_put_contents($this->filename, $this->writer->renderRow($this->document, $item), FILE_APPEND);
     }
 
     /**
@@ -60,7 +67,8 @@ class ArffWriter implements WriterInterface
      */
     public function prepare()
     {
-        $this->arffFile->write($this->filename);
+        $writer = new Writer();
+        $writer->write($this->document, $this->filename);
     }
 
     /**

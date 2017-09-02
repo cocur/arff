@@ -2,7 +2,7 @@
 
 
 namespace Cocur\Arff\Column;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * NominalColumnTest
@@ -12,11 +12,11 @@ use PHPUnit_Framework_TestCase;
  * @copyright 2015 Florian Eckerstorfer
  * @group     unit
  */
-class NominalColumnTest extends PHPUnit_Framework_TestCase
+class NominalColumnTest extends TestCase
 {
     /**
      * @test
-     * @covers Cocur\Arff\Column\NominalColumn::getType()
+     * @covers \Cocur\Arff\Column\NominalColumn::getType()
      */
     public function getTypeReturnsString()
     {
@@ -25,8 +25,8 @@ class NominalColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\AbstractColumn::setName()
-     * @covers Cocur\Arff\Column\AbstractColumn::getName()
+     * @covers \Cocur\Arff\Column\AbstractColumn::setName()
+     * @covers \Cocur\Arff\Column\AbstractColumn::getName()
      */
     public function setNameSetsNameAndGetNameReturnsName()
     {
@@ -38,8 +38,8 @@ class NominalColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\NominalColumn::setClasses()
-     * @covers Cocur\Arff\Column\NominalColumn::getClasses()
+     * @covers \Cocur\Arff\Column\NominalColumn::setClasses()
+     * @covers \Cocur\Arff\Column\NominalColumn::getClasses()
      */
     public function setClassesSetsClassesAndGetClassesReturnsClasses()
     {
@@ -54,7 +54,7 @@ class NominalColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\NominalColumn::__construct()
+     * @covers \Cocur\Arff\Column\NominalColumn::__construct()
      */
     public function constructorSetsNameAndClasses()
     {
@@ -69,7 +69,7 @@ class NominalColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\NominalColumn::render()
+     * @covers \Cocur\Arff\Column\NominalColumn::render()
      */
     public function renderRendersAttribute()
     {

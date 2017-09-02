@@ -5,7 +5,7 @@ namespace Cocur\Arff\Bridge\Plum;
 use Cocur\Arff\Column\NumericColumn;
 use Cocur\Arff\Column\StringColumn;
 use org\bovigo\vfs\vfsStream;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * ArffWriterTest
@@ -15,11 +15,11 @@ use PHPUnit_Framework_TestCase;
  * @copyright 2015 Florian Eckerstorfer
  * @group     unit
  */
-class ArffWriterTest extends PHPUnit_Framework_TestCase
+class ArffWriterTest extends TestCase
 {
     /**
      * @test
-     * @covers Cocur\Arff\Bridge\Plum\ArffWriter::prepare()
+     * @covers \Cocur\Arff\Bridge\Plum\ArffWriter::prepare()
      */
     public function prepareWritesHeader()
     {
@@ -35,7 +35,7 @@ class ArffWriterTest extends PHPUnit_Framework_TestCase
     }
     /**
      * @test
-     * @covers Cocur\Arff\Bridge\Plum\ArffWriter::writeItem()
+     * @covers \Cocur\Arff\Bridge\Plum\ArffWriter::writeItem()
      */
     public function writeItemWritesItem()
     {
@@ -53,11 +53,13 @@ class ArffWriterTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Bridge\Plum\ArffWriter::finish()
+     * @covers \Cocur\Arff\Bridge\Plum\ArffWriter::finish()
      */
     public function finishDoesNothing()
     {
         $writer = new ArffWriter('foo.txt', 'foo', []);
         $writer->finish();
+
+        $this->assertTrue(true);
     }
 }

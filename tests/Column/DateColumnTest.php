@@ -2,7 +2,7 @@
 
 namespace Cocur\Arff\Column;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * DateColumnTest
@@ -12,11 +12,11 @@ use PHPUnit_Framework_TestCase;
  * @copyright 2015 Florian Eckerstorfer
  * @group     unit
  */
-class DateColumnTest extends PHPUnit_Framework_TestCase
+class DateColumnTest extends TestCase
 {
     /**
      * @test
-     * @covers Cocur\Arff\Column\DateColumn::getType()
+     * @covers \Cocur\Arff\Column\DateColumn::getType()
      */
     public function getTypeReturnsDate()
     {
@@ -25,8 +25,8 @@ class DateColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\AbstractColumn::setName()
-     * @covers Cocur\Arff\Column\AbstractColumn::getName()
+     * @covers \Cocur\Arff\Column\AbstractColumn::setName()
+     * @covers \Cocur\Arff\Column\AbstractColumn::getName()
      */
     public function setNameSetsNameAndGetNameReturnsName()
     {
@@ -38,8 +38,8 @@ class DateColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\DateColumn::setDateFormat()
-     * @covers Cocur\Arff\Column\DateColumn::getDateFormat()
+     * @covers \Cocur\Arff\Column\DateColumn::setDateFormat()
+     * @covers \Cocur\Arff\Column\DateColumn::getDateFormat()
      */
     public function setDateFormatsSetsDateFormatAndGetDateFormatReturnsDateFormat()
     {
@@ -52,7 +52,7 @@ class DateColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\DateColumn::__construct()
+     * @covers \Cocur\Arff\Column\DateColumn::__construct()
      */
     public function constructorSetsNameAndDateFormat()
     {
@@ -64,7 +64,7 @@ class DateColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\DateColumn::render()
+     * @covers \Cocur\Arff\Column\DateColumn::render()
      */
     public function renderRendersAttribute()
     {
@@ -75,7 +75,7 @@ class DateColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\DateColumn::render()
+     * @covers \Cocur\Arff\Column\DateColumn::render()
      */
     public function renderRendersAttributeWithDateFormat()
     {

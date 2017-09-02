@@ -3,7 +3,7 @@
 
 namespace Cocur\Arff\Column;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * StringColumnTest
@@ -13,11 +13,11 @@ use PHPUnit_Framework_TestCase;
  * @copyright 2015 Florian Eckerstorfer
  * @group     unit
  */
-class StringColumnTest extends PHPUnit_Framework_TestCase
+class StringColumnTest extends TestCase
 {
     /**
      * @test
-     * @covers Cocur\Arff\Column\StringColumn::getType()
+     * @covers \Cocur\Arff\Column\StringColumn::getType()
      */
     public function getTypeReturnsString()
     {
@@ -26,8 +26,8 @@ class StringColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\AbstractColumn::setName()
-     * @covers Cocur\Arff\Column\AbstractColumn::getName()
+     * @covers \Cocur\Arff\Column\AbstractColumn::setName()
+     * @covers \Cocur\Arff\Column\AbstractColumn::getName()
      */
     public function setNameSetsNameAndGetNameReturnsName()
     {
@@ -39,7 +39,7 @@ class StringColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\StringColumn::__construct()
+     * @covers \Cocur\Arff\Column\StringColumn::__construct()
      */
     public function constructorSetsName()
     {
@@ -48,7 +48,7 @@ class StringColumnTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Cocur\Arff\Column\AbstractColumn::render()
+     * @covers \Cocur\Arff\Column\AbstractColumn::render()
      */
     public function renderRendersAttribute()
     {
