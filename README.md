@@ -87,6 +87,10 @@ $writer = new ArffWriter('filename.arff', 'name', [
 Changelog
 ---------
 
+### Version 0.2.2 (16 March 2018)
+
+- Case-insensitive parsing of column type
+
 ### Version 0.2.1 (2 September 2017)
 
 - Fix parsing of nominal columns
