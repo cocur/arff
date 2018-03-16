@@ -25,6 +25,8 @@ class ReaderTest extends TestCase
 @ATTRIBUTE b numeric
 @ATTRIBUTE c {x,y,'Top 100 Editors Picks: Print Books: Books'}
 @ATTRIBUTE d date "yyyy-MM-dd HH:mm:ss"
+@ATTRIBUTE e String
+@ATTRIBUTE f Numeric
 
 @DATA
 hello,1.5,x,'2015-07-17 16:12:30'
@@ -47,6 +49,9 @@ EOF;
 
         $this->assertEquals('b', $columns['b']->getName());
         $this->assertEquals('numeric', $columns['b']->getType());
+
+        $this->assertEquals('string', $columns['e']->getType());
+        $this->assertEquals('numeric', $columns['f']->getType());
 
         /** @var NominalColumn $columnC */
         $columnC = $columns['c'];

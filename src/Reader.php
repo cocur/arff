@@ -49,9 +49,9 @@ class Reader
             if (preg_match('/ATTRIBUTE\s([a-zA-Z0-9_-]+)\s(.*)/i', $line, $matches)) {
                 $type   = $matches[2];
                 $column = null;
-                if ($type === 'string') {
+                if (strcasecmp($type, 'string') === 0) {
                     $column = new StringColumn($matches[1]);
-                } else if ($type === 'numeric') {
+                } else if (strcasecmp($type, 'numeric') === 0) {
                     $column = new NumericColumn($matches[1]);
                 } else if (preg_match('/^\{(.*)\}$/', $matches[2], $classMatches)) {
                     $column = new NominalColumn($matches[1], array_map(function ($value) {
