@@ -19,7 +19,7 @@ class ReaderTest extends TestCase
         $reader = new Reader();
         $root = vfsStream::setup('fixtures');
         $content = <<<EOF
-@RELATION foobar
+@RELATION weka.foobar-something/version1
 
 @ATTRIBUTE a string
 @ATTRIBUTE b numeric
@@ -29,11 +29,11 @@ class ReaderTest extends TestCase
 @ATTRIBUTE f Numeric
 
 @DATA
-hello,1.5,x,'2015-07-17 16:12:30'
-'hello world',1.5,'x y',?
-hello,?,z,?
-'hello,world',?,?,?
-'hello;world',?,?,?
+hello,1.5,x,'2015-07-17 16:12:30','Ernesto',12
+'hello world',1.5,'x y',?,?,?
+hello,?,z,?,Jack,55
+'hello,world',?,?,?,?,?
+'hello;world',?,?,?,?,?
 
 EOF;
         $file = new vfsStreamFile('test.arff', 0777);
@@ -42,7 +42,7 @@ EOF;
         $document = $reader->readFile($root->url().'/test.arff');
 
         $columns = $document->getColumns();
-        $this->assertEquals('foobar', $document->getName());
+        $this->assertEquals('weka.foobar-something/version1', $document->getName());
 
         $this->assertEquals('a', $columns['a']->getName());
         $this->assertEquals('string', $columns['a']->getType());
@@ -85,5 +85,7 @@ EOF;
 
         $this->assertEquals('hello,world', $data[3]['a']);
         $this->assertEquals('hello;world', $data[4]['a']);
+
+        $this->assertEquals(5, count($data));
     }
 }
