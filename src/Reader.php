@@ -32,7 +32,7 @@ class Reader
      */
     protected function parseName($line)
     {
-        if (preg_match('/^@RELATION ([a-zA-Z-_]+)$/i', $line, $matches)) {
+        if (preg_match('/^@RELATION ([a-zA-Z-_\.\/\d]+)$/i', $line, $matches)) {
             return $matches[1];
         }
 
@@ -97,6 +97,11 @@ class Reader
                     $row[$columns[$columnNames[$j]]->getName()] = trim($value, "'");
                 }
             }
+
+            if (count($row) != count($columnNames)) {
+                continue; // malformed, probably and empty line
+            }
+
             $document->addData($row);
         }
     }
