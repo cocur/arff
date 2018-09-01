@@ -4,12 +4,12 @@
     "authors": [
         {
             "name": "Florian Eckerstorfer",
-            "email": "florian@eckerstorfer.co",
+            "email": "florian@eckerstorfer.net",
             "homepage": "https://florian.ec"
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "~6.3.0",
+        "phpunit/phpunit": "6.*|~7.0",
         "mockery/mockery": "~0.9",
         "mikey179/vfsStream": "~1.5",
         "plumphp/plum": "~0.5"
