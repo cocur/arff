@@ -87,6 +87,10 @@ $writer = new ArffWriter('filename.arff', 'name', [
 Changelog
 ---------
 
+### Version 0.2.3 (7 September 2018)
+
+- [#3](https://github.com/cocur/arff/pull/3) Support more generic relation name and drops malformed lines (by [frantzmiccoli](https://github.com/frantzmiccoli))
+
 ### Version 0.2.2 (16 March 2018)
 
 - Case-insensitive parsing of column type
